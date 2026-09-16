@@ -30,7 +30,7 @@ and the semi-product form by
 ```math
 		B_{k + 1} = Q_k^* B_{k} Q_k + S_k = Q_k^* \ldots Q_0^* B_0 Q_0 \ldots Q_k + \sum_{i = 0}^{k} Q_k^*\ldots Q_{i + 1}^* S_i Q_{i + 1} \ldots Q_k,
 ```
-where $Q_0, \ldots, Q_k \in L((\mathbb{R}^n)^*, \mathbb{R}^n)$ are projection operators and $S_0, \ldots, S_k \in L((\mathbb{R}^n)^*, \mathbb{R}^n)$ are of rank at most $2$. More specifically, for inverse Broyden we have $S_i = \rho_i s_i \otimes s_i + \lambda \langle y_i, B_i y_i \rangle w_i \otimes w_i$ and for all other inverse methods $S_i = \rho_i s_i \otimes s_i$.
+where $Q_0, ..., Q_k$ are projection operators and $S_0, \ldots, S_k \in L((\mathbb{R}^n)^*, \mathbb{R}^n)$ are of rank at most $2$. More specifically, for inverse Broyden we have $S_i = \rho_i s_i \otimes s_i + \lambda \langle y_i, B_i y_i \rangle w_i \otimes w_i$ and for all other inverse methods $S_i = \rho_i s_i \otimes s_i$.
 
 Evaluations of the sum form, using inverse DFP as an example, lead to recursion formulas such as
 ```math
@@ -56,7 +56,7 @@ When analyzing their performance, we can clearly see the linear dependence of $\
 ![Performance for BFGS](images/Chpt5FMCompBFGSb.png) ![Performance for DFP](images/Chpt5FMCompDFPb.png) 
 ![Performance for Broyden](images/Chpt5FMCompBroydenb.png) 
 
-One can, as we did, turn the matrix-free algorithms into Limited Memory quasi-Newton methods by restricted the number of included curvature pairs to the $m$ most recent pairs. Since the underlying quasi-Newton operators may now depend on the current iteration, the quantities $p_0, \ldots, p_k$ might become stale. In situations, where Limited Memory methods are combined with a fixed initial operator $B_0^{(k + 1)} = B_0$, there exists an efficient algorithm ($\mathcal{O}(T(n) + mn)$) for DFP and BFGS to update $p^{(k)}_{k - m}, \ldots, p^{(k)}_{k - 1}$ rather than compute $p^{(k + 1)}_{k - m + 1}, \ldots, p^{(k + 1)}_{k}$. In other case, one can compute $p^{(k + 1)}_{k}, \ldots, p^{(k + 1)}_{k}$ at a cost of $\mathcal{O}(mT(n) + m^2n)$.
+One can, as we did, turn the matrix-free algorithms into Limited Memory quasi-Newton methods by restricted the number of included curvature pairs to the $m$ most recent pairs. Since the underlying quasi-Newton operators may now depend on the current iteration, the quantities $p_0, \ldots, p_k$ might become stale. In situations, where Limited Memory methods are combined with a fixed initial operator $B_0^{(k + 1)} = B_0$, there exists an efficient algorithm ( $O(T(n) + mn)$ ) for DFP and BFGS to update $p_{k - m}^{(k)}, ..., p_{k - 1}^{(k)}$ rather than compute $p_{k - m + 1}^{(k + 1)}, ..., p_{k}^{(k + 1)}$. In other case, one can compute $p_{k}^{(k + 1)}, ..., p_{k}^{(k + 1)}$ at a cost of $O(mT(n) + m^2n)$.
 
 We also compared the different performance classes when updating the auxiliary quantities in Limited Memory methods in some plots:
 
